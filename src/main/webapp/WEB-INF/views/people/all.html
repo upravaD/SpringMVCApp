@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 
     <head>
         <meta charset="UTF-8">
@@ -10,6 +10,10 @@
         <div th:each="person : ${people}">
             <a th:href="@{/person/{id}(id=${person.getId()})}" th:text="${person.getName()}">person</a>
         </div>
+        <hr/>
+        <form th:action="@{/person/new}">
+            <input type="submit" value="Create new person">
+        </form>
     </body>
 
 </html>

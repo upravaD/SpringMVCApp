@@ -8,11 +8,12 @@ import java.util.List;
 
 @Component
 public class PersonDAO {
+    private static int ID_COUNT;
     private List<Person> people;
     {
         people = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            people.add(new Person(i, "name"+i));
+            people.add(new Person(++ID_COUNT, "name"+i));
         }
     }
 
@@ -25,5 +26,20 @@ public class PersonDAO {
                 .filter(people -> people.getId() == id)
                 .findAny()
                 .orElse(null);
+    }
+
+    public void save(Person person) {
+        person.setId(++ID_COUNT);
+        people.add(person);
+    }
+
+    public void update(Person newPerson, int id) {
+        Person oldPerson = getById(id);
+        oldPerson.setName(newPerson.getName());
+    }
+
+    public void delete(int id) {
+        people.remove(getById(id));
+        //people.removeIf(p -> p.getId() == id);
     }
 }
