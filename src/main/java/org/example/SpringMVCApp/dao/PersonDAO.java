@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Component
 public class PersonDAO {
@@ -13,7 +14,7 @@ public class PersonDAO {
     {
         people = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            people.add(new Person(++ID_COUNT, "name"+i));
+            people.add(new Person(++ID_COUNT, "name"+i, new Random().nextInt(5,100), i+"@mail.ru"));
         }
     }
 
@@ -36,10 +37,11 @@ public class PersonDAO {
     public void update(Person newPerson, int id) {
         Person oldPerson = getById(id);
         oldPerson.setName(newPerson.getName());
+        oldPerson.setAge(newPerson.getAge());
+        oldPerson.setEmail(newPerson.getEmail());
     }
 
     public void delete(int id) {
-        people.remove(getById(id));
-        //people.removeIf(p -> p.getId() == id);
+        people.removeIf(p -> p.getId() == id);
     }
 }

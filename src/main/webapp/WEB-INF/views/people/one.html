@@ -7,19 +7,29 @@
     </head>
 
     <body>
-        Person id:
-        <p th:text="${person.getId()}">id</p>
-        Person name:
-        <p th:text="${person.getName()}">name</p>
+        <a style="font-weight:bold" th:text="'Person id: '"/>
+        <a style="font-size:large"  th:text="${person.getId()}"/>
+        <br/>
+        <a style="font-weight:bold" th:text="'Person name: '"/>
+        <a style="font-size:large"  th:text="${person.getName()}"/>
+        <br/>
+        <a style="font-weight:bold" th:text="'Person age: '"/>
+        <a style="font-size:large"  th:text="${person.getAge()}"/>
+        <br/>
+        <a style="font-weight:bold" th:text="'Person email: '"/>
+        <a style="font-size:large"  th:text="${person.getEmail()}"/>
         <br/>
         <hr/>
-<!--        <a th:href="@{/person/{id}/edit(id=${person.getId()})}">edit</a>-->
         <form th:action="@{/person/{id}/edit(id=${person.getId()})}">
             <input type="submit" value="EDIT">
         </form>
         <br/>
         <form th:method="DELETE" th:action="@{/person/{id}(id=${person.getId()})}">
             <input type="submit" value="DELETE">
+        </form>
+        <br/>
+        <form th:action="@{/person}">
+            <input type="submit" value="BACK">
         </form>
     </body>
 

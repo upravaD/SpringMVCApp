@@ -8,9 +8,19 @@
 
     <body>
         <form th:method="PATCH" th:action="@{/person/{id}(id=${person.getId()})}" th:object="${person}">
-            <label for="name">Enter new name: </label>
+            <label style="font-weight: bold" for="name">Enter new name: </label>
             <input type="text" th:field="*{name}" id="name"/>
+            <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
             <br/>
+            <label style="font-weight: bold" for="age">Enter new age: </label>
+            <input type="text" th:field="*{age}" id="age"/>
+            <div style="color:red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age error</div>
+            <br/>
+            <label style="font-weight: bold" for="email">Enter new email: </label>
+            <input type="text" th:field="*{email}" id="email"/>
+            <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</div>
+            <br/>
+            <hr/>
             <input type="submit" th:value="UPGRADE">
         </form>
     </body>
